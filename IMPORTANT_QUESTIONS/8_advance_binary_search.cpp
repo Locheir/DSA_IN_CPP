@@ -11,7 +11,7 @@ int advanceBinarySearch(int arr[], int n, int key) {
             return mid;
         }
 
-        if (arr[start] < arr[mid]) {
+        if (arr[start] <= arr[mid]) {
             if (arr[start] <= key && arr[mid] > key) {
                 end = mid-1;
             } else {
