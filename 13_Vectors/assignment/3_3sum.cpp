@@ -44,6 +44,7 @@ vector<vector<int>> threeSum_Optimized(vector<int> nums) {
                 ans.push_back(temp);
                 j++;
                 k--;
+                
                 while (j<k && nums[j] == nums[j-1]) {
                     j++;
                 }
