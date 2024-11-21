@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 
 class Node {
@@ -28,12 +29,23 @@ Node* buildTree(vector<int> nodes) {
     return currNode;
 }
 
+int countNodes(Node* node) {
+    if (node == NULL) {
+        return 0;
+    }
+
+    int left_count = countNodes(node->left);
+    int right_count = countNodes(node->right);
+
+    return left_count+right_count+1;
+}
+
 int main() {
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
     Node* root = buildTree(nodes);
 
-    cout << root->value ;
-    
+    cout << countNodes(root);
+
     return 0;
 }

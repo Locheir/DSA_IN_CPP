@@ -3,7 +3,7 @@
 using namespace std;
 
 class Node {
-    public :
+    public : 
         Node* left;
         int value;
         Node* right;
@@ -28,12 +28,23 @@ Node* buildTree(vector<int> nodes) {
     return currNode;
 }
 
+void postOrder(Node* root) {
+    if (root == NULL ) {
+        return;
+    }
+
+    postOrder(root->left);
+    postOrder(root->right);
+    cout << root->value << " ";
+
+}
+
 int main() {
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
     Node* root = buildTree(nodes);
 
-    cout << root->value ;
-    
+    postOrder(root);
+
     return 0;
 }

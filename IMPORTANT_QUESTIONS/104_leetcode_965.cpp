@@ -1,9 +1,9 @@
 #include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Node {
-    public :
+    public : 
         Node* left;
         int value;
         Node* right;
@@ -28,12 +28,39 @@ Node* buildTree(vector<int> nodes) {
     return currNode;
 }
 
+bool isValid(Node* node, int value) {
+    if (node == NULL) {
+        return true;
+    }
+
+    if (node->value != value) {
+        return false;
+    }
+
+    return isValid(node->left, value) && isValid(node->right, value);
+}
+
+bool isUnivalued(Node* root) {
+    if (root == NULL) {
+        return true;
+    }
+
+    int value = root->value;
+
+    return isValid(root, value);
+}
+
 int main() {
+
     vector<int> nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
     Node* root = buildTree(nodes);
 
-    cout << root->value ;
-    
+    vector<int> nodes2 = {1, 1, 1, 1};
+
+    Node* root2 = buildTree(nodes2);
+
+    cout << isUnivalued(root2);
+
     return 0;
 }
